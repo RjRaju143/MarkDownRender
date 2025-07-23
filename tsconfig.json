@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "nodenext", // Change from "commonjs" to "nodenext"
+    "moduleResolution": "nodenext", // Add this line
+    "strict": true,
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./*.js", // Keep if you have JS files at the root that need compilation
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ]
+}
