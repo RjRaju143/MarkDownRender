@@ -1,0 +1,40 @@
+# Node dependencies (will be installed inside the image)
+node_modules
+dist
+.cache
+
+# Yarn files that aren't needed
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.yarnrc.yml
+
+# Build logs and temporary files
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS and IDE-specific files
+.DS_Store
+.env
+*.swp
+.vscode
+.idea
+
+# Git
+.git
+.gitignore
+
+# Test files and coverage reports
+coverage
+__tests__/
+*.spec.ts
+*.test.ts
+
+# Docs if you only want the built version
+# (Remove this line if you're copying `doc/` to `dist/`)
+# doc/
