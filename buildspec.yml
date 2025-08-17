@@ -17,7 +17,7 @@ phases:
       - REPOSITORY_URI=589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:-latest}
-      - aws eks update-kubeconfig --name dev-eks-cluster --region ap-south-1
+      
 
   build:
     commands:
