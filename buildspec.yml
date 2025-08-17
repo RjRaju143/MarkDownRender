@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR..."
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 589445360720.dkr.ecr.ap-south-1.amazonaws.com
+      - REPOSITORY_URI=589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:-latest}  # Default to latest if COMMIT_HASH is empty
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo "Pushing Docker images..."
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
+      - printf '[{"name":"velocity-app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
+  name: BuildArtifact
+
