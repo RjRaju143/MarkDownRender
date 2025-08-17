@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-deployment
+  labels:
+    app: dev-app
+spec:
+  replicas: 1  # You can adjust the number of replicas based on your need
+  selector:
+    matchLabels:
+      app: dev-app
+  template:
+    metadata:
+      labels:
+        app: dev-app
+    spec:
+      containers:
+        - name: dev-container
+          image: 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:latest  # Your ECR image
+          ports:
+            - containerPort: 3000  # Adjust based on your container's exposed port
+          imagePullPolicy: Always  # Pull the latest image on every deployment
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-service
+spec:
+  selector:
+    app: dev-app
+  ports:
+    - protocol: TCP
+      port: 80  # The port on which the service will be available
+      targetPort: 3000  # The port your container exposes
+  type: LoadBalancer  # You can change this to ClusterIP or NodePort based on your needs
+
+---
