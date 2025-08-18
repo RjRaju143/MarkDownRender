@@ -27,4 +27,3 @@ artifacts:
     - imagedefinitions.json
     - kubernetes/**/*
   name: BuildArtifact
-
