@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dev-app
 spec:
-  replicas: 1  # You can adjust the number of replicas based on your need
+  replicas: 10  # You can adjust the number of replicas based on your need
   selector:
     matchLabels:
       app: dev-app
