@@ -11,15 +11,15 @@ phases:
   build:
     commands:
       - echo "Building Docker image..."
-      - docker build -t 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:latest .
-      - docker tag 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:latest 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:$IMAGE_TAG
+      - docker build -t 589445360720.dkr.ecr.ap-south-1.amazonaws.com/markdownapp-production:latest .
+      - docker tag 589445360720.dkr.ecr.ap-south-1.amazonaws.com/markdownapp-production:latest 589445360720.dkr.ecr.ap-south-1.amazonaws.com/markdownapp-production:$IMAGE_TAG
 
   post_build:
     commands:
       - echo "Pushing Docker images..."
-      - docker push 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:$IMAGE_TAG
-      - docker push 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:latest
-      - printf '[{"name":"app","imageUri":"%s"}]' 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:$IMAGE_TAG > imagedefinitions.json
+      - docker push 589445360720.dkr.ecr.ap-south-1.amazonaws.com/markdownapp-production:$IMAGE_TAG
+      - docker push 589445360720.dkr.ecr.ap-south-1.amazonaws.com/markdownapp-production:latest
+      - printf '[{"name":"app","imageUri":"%s"}]' 589445360720.dkr.ecr.ap-south-1.amazonaws.com/markdownapp-production:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
   files:
