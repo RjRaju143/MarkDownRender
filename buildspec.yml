@@ -19,12 +19,11 @@ phases:
       - echo "Pushing Docker images..."
       - docker push 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:$IMAGE_TAG
       - docker push 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:latest
-      - printf '[{"name":"velocity-app","imageUri":"%s"}]' 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"app","imageUri":"%s"}]' 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
   files:
     - imagedefinitions.json
     - kubernetes/**/*
   name: BuildArtifact
-
 
