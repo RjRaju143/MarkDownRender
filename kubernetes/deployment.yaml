@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: dev-deployment
   labels:
-    app: dev-app
+    app: app
 spec:
-  replicas: 10  # You can adjust the number of replicas based on your need
+  replicas: 1  # You can adjust the number of replicas based on your need
   selector:
     matchLabels:
-      app: dev-app
+      app: app
   template:
     metadata:
       labels:
-        app: dev-app
+        app: app
     spec:
       containers:
-        - name: dev-container
+        - name: app
           image: 589445360720.dkr.ecr.ap-south-1.amazonaws.com/markdownapp-production:latest  # Your ECR image
           ports:
             - containerPort: 3000  # Adjust based on your container's exposed port
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: dev-service
+  name: app
 spec:
   selector:
-    app: dev-app
+    app: app
   ports:
     - protocol: TCP
       port: 80  # The port on which the service will be available
