@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dev-container
-          image: 589445360720.dkr.ecr.ap-south-1.amazonaws.com/dev:latest  # Your ECR image
+          image: 589445360720.dkr.ecr.ap-south-1.amazonaws.com/markdownapp-production:latest  # Your ECR image
           ports:
             - containerPort: 3000  # Adjust based on your container's exposed port
           imagePullPolicy: Always  # Pull the latest image on every deployment
